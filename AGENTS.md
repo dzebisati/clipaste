@@ -290,6 +290,9 @@ expected; do not report it as a fault.
 - Do not bind the daemon to `0.0.0.0` or add firewall exceptions to "fix"
   connectivity. It listens on loopback deliberately; the image bytes on that
   port are the user's screen contents.
+- Do not point consumers at the daemon by hostname. It answers only `Host`
+  values of `localhost` or an IP address, so a web page cannot read screenshots
+  through DNS rebinding; `wsl-setup --host` takes an IP address for this reason.
 - Do not write shims by hand. `ssh-setup` / `wsl-setup` generate them with the
   correct URL baked in; a hand-written one drifts silently.
 - Do not `kill -9` the daemon to restart it. Use `brew services restart clipaste`
